@@ -16,8 +16,8 @@ function ok(tags){
 				var id = result[i].id;
 				var secret = result[i].secret;
 				var url= 'http://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + id + '_' + secret + '.jpg';
-				output += '<a href="#" class="big-link" data-reveal-id="myModal" data-animation="fadeAndPop">';
-				output += '<img src="' + url + '" onclick="getInfo('+ id +')"></a>' ;
+				output += ';&nbsp;<a href="#" class="big-link" data-reveal-id="myModal" data-animation="fadeAndPop">';
+				output += '<img src="' + url + '" onclick="getInfo('+ id +')"></a>&nbsp' ;
 			}
 			document.getElementById("photos").innerHTML = output;
 		}
@@ -42,14 +42,14 @@ function getInfo(id){
 			var secret = result.secret;
 			var url= 'http://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + id + '_' + secret + '.jpg';
 			var title = result.title._content;
-			output += '<h1>' + title +  '</h1>';
-			output += '<div><img src="' + url + '"></div>';
+			output += '<h1>' + title +  '</h1><br><br>';
+			output += '<div><img src="' + url + '"></div><br><br>';
 			output += '<div id="photo_tags">';
 			result_tags = data.photo.tags.tag;
 			for (var i = 0; i < result_tags.length; i++) {
 				var tag_name = result_tags[i]._content;
-				var tag_url = '<a href="#" onclick="ok(\''+ tag_name +'\')">'+ tag_name +'</a>';
-				output += tag_url + '&nbsp;&nbsp;';
+				var tag_url = '<a href="#" onclick="ok(\''+ tag_name +'\')">'+ tag_name +' </a>';
+				output += tag_url;
 			}
 			output+= '</div>';
 			output+= '<a class="close-reveal-modal">&times;</a>'

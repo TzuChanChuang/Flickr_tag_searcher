@@ -4,18 +4,26 @@ body {
 
 }
 #tags {
-  position: center;
-  margin-top: 10px;
-  margin: 10px auto;
-  width: 50%;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 20px;
-  opacity: 0.82;
+  	position: absolute;
+  	left: 25%;
+  	margin: 20px auto;
+  	width: 50%;
+  	height: 50px;
+  	border-radius: 10px;
+  	font-size: 20px;
+  	opacity: 0.82;
 }
 
 button{
-	position: center;
+	position: absolute;
+	top:85px;
+  	left: 45%;
+  	width: 10%;
 	width:100px;
-	height:30px;
+	height:40px;
+}
+
+#photos{
+	position: absolute;
+	top:150px;
 }
