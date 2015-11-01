@@ -1,11 +1,13 @@
 function ok(tags){
 	var output = '';
+	//document.getElementById("myModal").innerHTML = output;
 	var APIKey = '6a8f39a372143229c537cd123625340d';
 	if(tags==undefined) tags = document.getElementById("tags").value;
-	alert(tags);
+	//alert(tags);
 	var SearchAPI = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key='+ APIKey + '&tags='+ tags +'&jsoncallback=?';
 				
-	$.getJSON(SearchAPI, function(data) { 
+	$.getJSON(SearchAPI, function(data) {
+		$('#myModal').trigger('reveal:close') 
 		if (data.stat == 'ok') {
 			result = data.photos.photo;
 			for (var i = 0; i < result.length; i++) {
@@ -14,7 +16,8 @@ function ok(tags){
 				var id = result[i].id;
 				var secret = result[i].secret;
 				var url= 'http://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + id + '_' + secret + '.jpg';
-				output += '<img src="' + url + '" onclick="getInfo('+ id +')">';
+				output += '<a href="#" class="big-link" data-reveal-id="myModal" data-animation="fadeAndPop">';
+				output += '<img src="' + url + '" onclick="getInfo('+ id +')"></a>' ;
 			}
 			document.getElementById("photos").innerHTML = output;
 		}
@@ -41,13 +44,16 @@ function getInfo(id){
 			var title = result.title._content;
 			output += '<h1>' + title +  '</h1>';
 			output += '<div><img src="' + url + '"></div>';
+			output += '<div id="photo_tags">';
 			result_tags = data.photo.tags.tag;
 			for (var i = 0; i < result_tags.length; i++) {
 				var tag_name = result_tags[i]._content;
 				var tag_url = '<a href="#" onclick="ok(\''+ tag_name +'\')">'+ tag_name +'</a>';
 				output += tag_url + '&nbsp;&nbsp;';
 			}
-			document.getElementById("photos").innerHTML = output;
+			output+= '</div>';
+			output+= '<a class="close-reveal-modal">&times;</a>'
+			document.getElementById("myModal").innerHTML = output;
 		}
 		else {
 		    result = null;
