@@ -1,0 +1,21 @@
+body {
+    background-image: url("simple.jpg");
+    background-size: 100%;
+
+}
+#tags {
+  position: center;
+  margin-top: 10px;
+  margin: 10px auto;
+  width: 50%;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+  opacity: 0.82;
+}
+
+button{
+	position: center;
+	width:100px;
+	height:30px;
+}
